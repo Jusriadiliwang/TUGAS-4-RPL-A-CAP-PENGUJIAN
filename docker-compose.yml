@@ -1,0 +1,64 @@
+services:
+  mongo-node1:
+    image: mongo:7
+    container_name: cap-mongo-node1
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "27017:27017"
+    networks:
+      - cap-network
+
+  mongo-node2:
+    image: mongo:7
+    container_name: cap-mongo-node2
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "27018:27017"
+    networks:
+      - cap-network
+
+  mongo-node3:
+    image: mongo:7
+    container_name: cap-mongo-node3
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "27019:27017"
+    networks:
+      - cap-network
+
+  cassandra-node1:
+    image: cassandra:4.1
+    container_name: cap-cassandra-node1
+    ports:
+      - "9042:9042"
+    environment:
+      CASSANDRA_CLUSTER_NAME: "CAPCluster"
+      CASSANDRA_SEEDS: "cap-cassandra-node1"
+      CASSANDRA_ENDPOINT_SNITCH: "GossipingPropertyFileSnitch"
+      CASSANDRA_DC: "datacenter1"
+      MAX_HEAP_SIZE: "512M"
+      HEAP_NEWSIZE: "100M"
+    networks:
+      - cap-network
+
+  cassandra-node2:
+    image: cassandra:4.1
+    container_name: cap-cassandra-node2
+    ports:
+      - "9043:9042"
+    depends_on:
+      - cassandra-node1
+    environment:
+      CASSANDRA_CLUSTER_NAME: "CAPCluster"
+      CASSANDRA_SEEDS: "cap-cassandra-node1"
+      CASSANDRA_ENDPOINT_SNITCH: "GossipingPropertyFileSnitch"
+      CASSANDRA_DC: "datacenter1"
+      MAX_HEAP_SIZE: "512M"
+      HEAP_NEWSIZE: "100M"
+    networks:
+      - cap-network
+
+networks:
+  cap-network:
+    name: cap-network
+    driver: bridge
