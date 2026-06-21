@@ -1,3 +1,7 @@
+NAMA : JUSRIADI LIWANG 
+NIM  : 105841117023
+BERIKUT INI PENJELASAN CARA MENJALANKANYA
+
 # Program Pengujian Teorema CAP
 
 Program ini dibuat untuk menguji konsep **CAP Theorem** pada sistem terdistribusi:
@@ -56,7 +60,6 @@ CAP-Pengujian-Kelompok4
 
 ## 3. Cara Menjalankan
 
-Buka folder ini di VS Code, lalu buka terminal PowerShell.
 
 ### Langkah 1 — Cek Docker
 
@@ -169,8 +172,6 @@ Jika pengujian selesai, jalankan:
 .\scripts\12-matikan-semua.ps1
 ```
 
----
-
 ## 7. Catatan Penting
 
 Jika PowerShell menolak menjalankan script `.ps1`, jalankan perintah ini sekali saja:
@@ -183,19 +184,3 @@ Lalu ulangi script yang ingin dijalankan.
 
 ---
 
-## 8. Bukti Screenshot untuk Laporan
-
-Ambil screenshot pada bagian berikut:
-
-1. Container berhasil berjalan.
-2. MongoDB berhasil insert data saat normal.
-3. MongoDB error saat partition.
-4. Cassandra berhasil select data saat normal.
-5. Cassandra tetap merespons setelah partition.
-6. Container dipulihkan kembali.
-
-Simpan screenshot ke folder:
-
-```text
-hasil-screenshot
-```
